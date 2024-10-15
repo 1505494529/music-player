@@ -26,7 +26,7 @@ fetch(tokenUrl, {
         const songTitle = document.getElementById('songTitle');
 
         const loadSong = song => {
-            audio.src = `music/${song}`;
+            audio.src = `${song}`;
             songTitle.textContent = song;
         };
 
