@@ -24,13 +24,25 @@ fetch(tokenUrl, {
         const audio = document.getElementById('audio');
         const playBtn = document.getElementById('playBtn');
         const songTitle = document.getElementById('songTitle');
+        
+        // 生成一个随机播放顺序的数组
+        const shuffleArray = (array) => {
+            let shuffled = array.slice();
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        };
 
+        let shuffledSongs = shuffleArray(songs);
+        
         const loadSong = song => {
             audio.src = `music/${song}`;
             songTitle.textContent = song;
         };
 
-        loadSong(songs[songIndex]);
+        loadSong(shuffledSongs[songIndex]);
 
         playBtn.onclick = () => {
             audio.paused ? audio.play() : audio.pause();
@@ -38,14 +50,26 @@ fetch(tokenUrl, {
         };
 
         document.getElementById('prevBtn').onclick = () => {
-            songIndex = (songIndex - 1 + songs.length) % songs.length;
-            loadSong(songs[songIndex]);
+            songIndex = (songIndex - 1 + shuffledSongs.length) % shuffledSongs.length;
+            loadSong(shuffledSongs[songIndex]);
             audio.play();
         };
 
         document.getElementById('nextBtn').onclick = () => {
-            songIndex = (songIndex + 1) % songs.length;
-            loadSong(songs[songIndex]);
+            songIndex = (songIndex + 1) % shuffledSongs.length;
+            loadSong(shuffledSongs[songIndex]);
+            audio.play();
+        };
+
+        // 监听音频播放结束事件
+        audio.onended = () => {
+            songIndex++;
+            if (songIndex >= shuffledSongs.length) {
+                // 播放完一轮后重新洗牌
+                shuffledSongs = shuffleArray(songs);
+                songIndex = 0;
+            }
+            loadSong(shuffledSongs[songIndex]);
             audio.play();
         };
     });
