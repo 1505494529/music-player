@@ -19,14 +19,14 @@ fetch(tokenUrl, {
             Accept: 'application/vnd.github.v3+json'
         }
     }).then(res => res.json()).then(data => {
-        const songs = data.map(item => item.path);
+        const songs = data.map(item => item.name);
         let songIndex = 0;
         const audio = document.getElementById('audio');
         const playBtn = document.getElementById('playBtn');
         const songTitle = document.getElementById('songTitle');
 
         const loadSong = song => {
-            audio.src = `${song}`;
+            audio.src = `music/${song}`;
             songTitle.textContent = song;
         };
 
