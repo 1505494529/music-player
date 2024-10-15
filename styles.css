@@ -1,53 +1,70 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #e8f1f5;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    color: #333;
 }
 
 .player {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 300px;
+    width: 320px;
+    transition: box-shadow 0.3s ease;
+}
+
+.player:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
     color: #333;
+    font-size: 24px;
 }
 
 audio {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .controls {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 button {
-    background-color: #6200ea;
+    background-color: #008cba;
     border: none;
     color: white;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    outline: none;
 }
 
 button:hover {
-    background-color: #3700b3;
+    background-color: #005f75;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
 }
 
 #songTitle {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #333;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #555;
+    font-weight: 400;
 }
